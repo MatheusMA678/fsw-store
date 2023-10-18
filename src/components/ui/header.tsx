@@ -1,7 +1,7 @@
 import { Button } from "./button";
 import { HomeIcon, ListOrderedIcon, LogInIcon, MenuIcon, PercentIcon, ShoppingBasketIcon } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./sheet";
-import { AuthButton } from "../client/button";
+import { AuthButton } from "../client/auth-button";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";

@@ -1,14 +1,21 @@
 "use client"
 
-import { signIn, useSession } from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react"
 import { Button, ButtonProps } from "../ui/button"
 import { LogInIcon, LogOutIcon } from "lucide-react"
 
 export function AuthButton({ ...props }: ButtonProps) {
-  const { status, data } = useSession()
+  const { status } = useSession()
 
   const handleAuth = async () => {
-    await signIn('google')
+    switch (status) {
+      case 'authenticated':
+        await signOut()
+        break;
+      case 'unauthenticated':
+        await signIn('google')
+        break;
+    }
   }
 
   return (
