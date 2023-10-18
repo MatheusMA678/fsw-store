@@ -1,8 +1,15 @@
 import { Button } from "./button";
 import { HomeIcon, ListOrderedIcon, LogInIcon, MenuIcon, PercentIcon, ShoppingBasketIcon } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./sheet";
+import { AuthButton } from "../client/button";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Separator } from "./separator";
 
-export function Header() {
+export async function Header() {
+  const session = await getServerSession(authOptions)
+
   return (
     <header className="border-b flex justify-between items-center p-[1.875rem]">
       <Sheet>
@@ -16,11 +23,27 @@ export function Header() {
             Menu
           </SheetHeader>
 
+          {session?.user && (
+            <div className="flex flex-col">
+              <div className="py-4 flex items-center gap-2">
+                <Avatar>
+                  <AvatarFallback>
+                    {session.user.name?.[0].toUpperCase()}
+                  </AvatarFallback>
+                  <AvatarImage src={session.user.image!} />
+                </Avatar>
+
+                <div className="flex flex-col overflow-hidden">
+                  <span className="font-medium truncate">{session.user.name}</span>
+                  <span className="text-sm text-muted-foreground">Boas compras!</span>
+                </div>
+              </div>
+              <Separator />
+            </div>
+          )}
+
           <div className="mt-4 space-y-2">
-            <Button variant={'outline'} className="w-full justify-start gap-2">
-              <LogInIcon size={20} />
-              Fazer Login
-            </Button>
+            <AuthButton />
 
             <Button variant={'outline'} className="w-full justify-start gap-2">
               <HomeIcon size={20} />
