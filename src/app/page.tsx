@@ -1,7 +1,16 @@
-export default async function Home() {
+import Image from "next/image"
+
+export default function Home() {
   return (
-    <div>
-      <h1>FSW Store</h1>
+    <div className="p-5">
+      <Image
+        src="/banner-1.png"
+        alt="até 55% de desconto este mês!"
+        width={0}
+        height={0}
+        className="h-auto w-full"
+        sizes="100vw"
+      />
     </div>
   )
 }
