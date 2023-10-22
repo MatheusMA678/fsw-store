@@ -2,9 +2,11 @@ import Image from "next/image"
 import { Categories } from "./components/categories"
 import { ProductList } from "./components/product-list"
 import { prisma } from "@/lib/prisma"
+import { SectionTitle } from "./components/section-title"
+import { PromoBanner } from "./components/promo-banner"
 
 export default async function Home() {
-  const products = await prisma.product.findMany({
+  const deals = await prisma.product.findMany({
     where: {
       discount_percentage: {
         gt: 0,
@@ -12,15 +14,19 @@ export default async function Home() {
     },
   })
 
+  const keyboards = await prisma.product.findMany({
+    where: {
+      category: {
+        slug: 'keyboards',
+      },
+    },
+  })
+
   return (
-    <div className="flex flex-col gap-8">
-      <Image
+    <div className="flex flex-col gap-8 py-5">
+      <PromoBanner
         src="/banner-1.png"
         alt="até 55% de desconto este mês!"
-        width={0}
-        height={0}
-        className="h-auto w-full px-5"
-        sizes="100vw"
       />
 
       <section className="px-5">
@@ -28,18 +34,19 @@ export default async function Home() {
       </section>
 
       <section>
-        <strong className="block tracking-wider uppercase mb-3 pl-5">ofertas</strong>
-        <ProductList products={products} />
+        <SectionTitle>ofertas</SectionTitle>
+        <ProductList products={deals} />
       </section>
 
-      <Image
+      <PromoBanner
         src="/banner-2.png"
         alt="até 55% de desconto em mouses!"
-        width={0}
-        height={0}
-        className="h-auto w-full px-5"
-        sizes="100vw"
       />
+
+      <section>
+        <SectionTitle>teclados</SectionTitle>
+        <ProductList products={keyboards} />
+      </section>
     </div>
   )
 }
