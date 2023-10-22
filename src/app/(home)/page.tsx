@@ -1,7 +1,17 @@
 import Image from "next/image"
 import { Categories } from "./components/categories"
+import { ProductList } from "./components/product-list"
+import { prisma } from "@/lib/prisma"
 
-export default function Home() {
+export default async function Home() {
+  const products = await prisma.product.findMany({
+    where: {
+      discount_percentage: {
+        gt: 0,
+      },
+    },
+  })
+
   return (
     <div className="p-5">
       <Image
@@ -13,9 +23,13 @@ export default function Home() {
         sizes="100vw"
       />
 
-      <div className="mt-8">
+      <section className="mt-8">
         <Categories />
-      </div>
+      </section>
+
+      <section className="mt-8 overflow-x-auto">
+        <ProductList products={products} />
+      </section>
     </div>
   )
 }
