@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Separator } from "./separator";
+import Link from "next/link";
 
 export async function Header() {
   const session = await getServerSession(authOptions)
@@ -45,19 +46,25 @@ export async function Header() {
           <div className="mt-4 space-y-2">
             <AuthButton />
 
-            <Button variant={'outline'} className="w-full justify-start gap-2">
-              <HomeIcon size={20} />
-              Início
+            <Button variant={'outline'} className="w-full justify-start" asChild>
+              <Link href={'/'} className="flex items-center gap-2">
+                <HomeIcon size={20} />
+                Início
+              </Link>
             </Button>
 
-            <Button variant={'outline'} className="w-full justify-start gap-2">
-              <PercentIcon size={20} />
-              Ofertas
+            <Button variant={'outline'} className="w-full justify-start" asChild>
+              <Link href={'/ofertas'} className="flex items-center gap-2">
+                <PercentIcon size={20} />
+                Ofertas
+              </Link>
             </Button>
 
-            <Button variant={'outline'} className="w-full justify-start gap-2">
-              <ListOrderedIcon size={20} />
-              Catálogo
+            <Button variant={'outline'} className="w-full justify-start" asChild>
+              <Link href={'/catalogo'} className="flex items-center gap-2">
+                <ListOrderedIcon size={20} />
+                Catálogo
+              </Link>
             </Button>
 
           </div>
@@ -65,7 +72,7 @@ export async function Header() {
       </Sheet>
 
       <h1 className="font-bold text-xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-foreground">
+        <span className="text-primary">
           FSW
         </span>{' '}
         Store
