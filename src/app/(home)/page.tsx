@@ -13,23 +13,33 @@ export default async function Home() {
   })
 
   return (
-    <div className="p-5">
+    <div className="flex flex-col gap-8">
       <Image
         src="/banner-1.png"
         alt="até 55% de desconto este mês!"
         width={0}
         height={0}
-        className="h-auto w-full"
+        className="h-auto w-full px-5"
         sizes="100vw"
       />
 
-      <section className="mt-8">
+      <section className="px-5">
         <Categories />
       </section>
 
-      <section className="mt-8 overflow-x-auto">
+      <section>
+        <strong className="block tracking-wider uppercase mb-3 pl-5">ofertas</strong>
         <ProductList products={products} />
       </section>
+
+      <Image
+        src="/banner-2.png"
+        alt="até 55% de desconto em mouses!"
+        width={0}
+        height={0}
+        className="h-auto w-full px-5"
+        sizes="100vw"
+      />
     </div>
   )
 }
