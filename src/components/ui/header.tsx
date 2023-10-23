@@ -77,12 +77,14 @@ export async function Header() {
         </SheetContent>
       </Sheet>
 
-      <h1 className="font-bold text-xl">
-        <span className="text-primary">
-          FSW
-        </span>{' '}
-        Store
-      </h1>
+      <Link href="/">
+        <h1 className="font-bold text-xl">
+          <span className="text-primary">
+            FSW
+          </span>{' '}
+          Store
+        </h1>
+      </Link>
 
       <Button variant="outline" size="icon">
         <ShoppingBasketIcon />
