@@ -42,12 +42,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </Badge>
       </div>
 
-      <section className="grid md:flex md:flex-wrap sm:grid-cols-2 gap-8">
+      <section className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
         {category.products.map(product =>
           <ProductItem
             key={product.id}
             product={computeProductTotalPrice(product)}
-            className="max-sm:w-full md:max-w-[170px]"
+            className="max-sm:w-full"
           />
         )}
       </section>
