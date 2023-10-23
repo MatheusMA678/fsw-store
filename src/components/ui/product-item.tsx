@@ -3,15 +3,17 @@ import { currencyFormatter } from "@/utils/currency-formatter"
 import Image from "next/image"
 import { Badge } from "./badge"
 import { ArrowDownIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface ProductItemProps {
   product: ProductWithTotalPrice
+  className?: string
 }
 
-export function ProductItem({ product }: ProductItemProps) {
+export function ProductItem({ product, className }: ProductItemProps) {
   return (
-    <div className="flex flex-col gap-4 max-w-[170px]">
-      <div className="bg-accent rounded-lg h-[170px] w-[170px] flex items-center justify-center relative">
+    <div className={cn("flex flex-col gap-4", className)}>
+      <div className="bg-accent rounded-lg h-[170px] min-w-[170px] flex items-center justify-center relative">
         <Image
           src={product.image_urls[0]}
           alt={product.name}
