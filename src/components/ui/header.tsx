@@ -1,6 +1,6 @@
 import { Button } from "./button";
 import { HomeIcon, ListOrderedIcon, LogInIcon, MenuIcon, PercentIcon, ShoppingBasketIcon } from 'lucide-react'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./sheet";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./sheet";
 import { AuthButton } from "../client/auth-button";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -46,26 +46,32 @@ export async function Header() {
           <div className="mt-4 space-y-2">
             <AuthButton />
 
-            <Button variant={'outline'} className="w-full justify-start" asChild>
-              <Link href={'/'} className="flex items-center gap-2">
-                <HomeIcon size={20} />
-                Início
-              </Link>
-            </Button>
+            <SheetClose asChild>
+              <Button variant={'outline'} className="w-full justify-start" asChild>
+                <Link href={'/'} className="flex items-center gap-2">
+                  <HomeIcon size={20} />
+                  Início
+                </Link>
+              </Button>
+            </SheetClose>
 
-            <Button variant={'outline'} className="w-full justify-start" asChild>
-              <Link href={'/ofertas'} className="flex items-center gap-2">
-                <PercentIcon size={20} />
-                Ofertas
-              </Link>
-            </Button>
+            <SheetClose asChild>
+              <Button variant={'outline'} className="w-full justify-start" asChild>
+                <Link href={'/ofertas'} className="flex items-center gap-2">
+                  <PercentIcon size={20} />
+                  Ofertas
+                </Link>
+              </Button>
+            </SheetClose>
 
-            <Button variant={'outline'} className="w-full justify-start" asChild>
-              <Link href={'/catalogo'} className="flex items-center gap-2">
-                <ListOrderedIcon size={20} />
-                Catálogo
-              </Link>
-            </Button>
+            <SheetClose asChild>
+              <Button variant={'outline'} className="w-full justify-start" asChild>
+                <Link href={'/catalogo'} className="flex items-center gap-2">
+                  <ListOrderedIcon size={20} />
+                  Catálogo
+                </Link>
+              </Button>
+            </SheetClose>
 
           </div>
         </SheetContent>
