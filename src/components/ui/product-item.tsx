@@ -4,6 +4,7 @@ import Image from "next/image"
 import { Badge } from "./badge"
 import { ArrowDownIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 interface ProductItemProps {
   product: ProductWithTotalPrice
@@ -12,7 +13,7 @@ interface ProductItemProps {
 
 export function ProductItem({ product, className }: ProductItemProps) {
   return (
-    <div className={cn("flex flex-col gap-4", className)}>
+    <Link href={`/produto/${product.slug}`} className={cn("flex flex-col gap-4", className)}>
       <div className="bg-accent rounded-lg h-[170px] min-w-[170px] flex items-center justify-center relative">
         <Image
           src={product.image_urls[0]}
@@ -49,6 +50,6 @@ export function ProductItem({ product, className }: ProductItemProps) {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
